@@ -29,6 +29,10 @@ RSpec.describe 'Locations API', type: :request do
         expect(json).not_to be_empty
         expect(json['id']).to eq(location_id)
       end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
     end
 
     context 'when the record does not exists' do
@@ -50,7 +54,7 @@ RSpec.describe 'Locations API', type: :request do
     let(:valid_attributes) { { name: 'Pasaraya Blok M', address: 'Melawai', city: 'Jakarta', google_map_url: 'https://www.google.com/maps/place/Pasaraya+Blok+M' } }
 
     context 'when the request is valid' do
-      before { post '/locations', params: valid_attributes }
+      before { post '/location/create', params: valid_attributes }
 
       it 'creates a location' do
         expect(json['name']).to eq('Pasaraya Blok M')
@@ -65,7 +69,7 @@ RSpec.describe 'Locations API', type: :request do
     end
 
     context 'when the request is not valid' do
-      before { post '/locations', params: { title: 'invalid request' } }
+      before { post '/location/create', params: { title: 'invalid request' } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)

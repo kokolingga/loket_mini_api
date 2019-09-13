@@ -1,15 +1,18 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show]
 
+  # GET /locations
   def index
     @locations = Location.all
     json_response(@locations)
   end
 
+  # GET /locations/:id
   def show
     json_response(@location)
   end
 
+  # POST /location/create
   def create
     @location = Location.create!(location_params)
     json_response(@location, :created)
