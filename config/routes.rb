@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   # Event
   get  '/locations/:location_id/events',      to: 'events#index'
+  get  '/locations/:location_id/events/:id/get_info',  to: 'events#get_info'
   get  '/locations/:location_id/events/:id',  to: 'events#show'
   post '/locations/:location_id/events',      to: 'events#create'
   post '/event/create',                       to: 'events#create_by_location_id'
+
 
   # Ticket
   get  '/events/:event_id/tickets',           to: 'tickets#index'

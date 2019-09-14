@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_location
-  before_action :set_location_event, only: [:show]
+  before_action :set_location_event, only: [:show, :get_info]
 
   # GET /locations/:location_id/events
   def index
@@ -24,6 +24,11 @@ class EventsController < ApplicationController
     json_response(@location, :created)
   end
 
+  # GET /locations/:location_id/events/:id/get_info
+  def get_info
+    @get_info = Event.left_outer_joins(:tickets).left_outer_joins(:location).find(params[:id])
+  end
+
   private
 
   def event_params_by_location_id
@@ -41,4 +46,6 @@ class EventsController < ApplicationController
   def set_location_event
     @event = @location.events.find_by!(id: params[:id]) if @location
   end
+
+
 end

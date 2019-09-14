@@ -4,6 +4,7 @@ RSpec.describe 'Events API' do
   # initialize test data
   let!(:location) { create(:location) }
   let!(:events) { create_list(:event, 2, location_id: location.id) }
+  let!(:tickets) { create_list(:ticket, 2, event_id: events.first.id) }
   let(:location_id) { location.id }
   let(:id) {events.first.id}
 
@@ -100,4 +101,30 @@ RSpec.describe 'Events API' do
     end
   end
 
+  # Test suite for GET /locations/:location_id/events/:id/get_info
+  describe 'GET /locations/:location_id/events/:id/get_info' do
+    before { get "/locations/#{location_id}/events/#{id}/get_info" }
+
+    context 'when event exists' do
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns the event\'s info' do
+        expect(json['data']['id']).to eq(id)
+      end
+    end
+
+    context 'when event does not exist' do
+      let(:id) { 0 }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns a not found message' do
+        expect(response.body).to match(/Couldn't find Event/)
+      end
+    end
+  end
 end

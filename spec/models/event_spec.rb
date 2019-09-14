@@ -5,6 +5,8 @@ RSpec.describe Event, type: :model do
   # ensure an event record belongs to a single location record
   it { should belong_to(:location) }
 
+  it { should have_many(:tickets).dependent(:destroy) }
+
   # Validation tests
   # ensure each columns are present before saving
   it { should validate_presence_of(:name) }
