@@ -18,7 +18,17 @@ class EventsController < ApplicationController
     json_response(@location, :created)
   end
 
+  # POST /event/create
+  def create_by_location_id
+    @location.events.create!(event_params_by_location_id)
+    json_response(@location, :created)
+  end
+
   private
+
+  def event_params_by_location_id
+    params.permit(:location_id, :name, :category, :event_type, :capacity, :organizer, :start_date, :end_date, :start_time, :end_time, :description)
+  end
 
   def event_params
     params.permit(:name, :category, :event_type, :capacity, :organizer, :start_date, :end_date, :start_time, :end_time, :description)

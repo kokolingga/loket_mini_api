@@ -18,7 +18,17 @@ class TicketsController < ApplicationController
     json_response(@event, :created)
   end
 
+  # POST /event/ticket/create
+  def create_by_event_id
+    @event.tickets.create!(ticket_params_by_event_id)
+    json_response(@event, :created)
+  end
+
   private
+
+  def ticket_params_by_event_id
+    params.permit(:event_id, :name, :amount, :price, :description, :sale_start_date, :sale_end_date)
+  end
 
   def ticket_params
     params.permit(:name, :amount, :price, :description, :sale_start_date, :sale_end_date)
