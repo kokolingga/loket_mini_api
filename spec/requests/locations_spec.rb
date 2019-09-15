@@ -48,8 +48,8 @@ RSpec.describe 'Locations API', type: :request do
     end
   end
 
-  # Test suite for POST /locations
-  describe 'POST /locations' do
+  # Test suite for POST /location
+  describe 'POST /location/create' do
     # valid payload
     let(:valid_attributes) { { name: 'Pasaraya Blok M', address: 'Melawai', city: 'Jakarta', google_map_url: 'https://www.google.com/maps/place/Pasaraya+Blok+M' } }
 

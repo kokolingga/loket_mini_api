@@ -17,4 +17,9 @@ Rails.application.routes.draw do
   get  '/events/:event_id/tickets/:id',       to: 'tickets#show'
   post '/events/:event_id/tickets',           to: 'tickets#create'
   post '/event/ticket/create',                to: 'tickets#create_by_event_id'
+
+  # Customer
+  get  '/customers',                          to: 'customers#index'
+  get  '/customers/:id',                      to: 'customers#show'
+  post '/customer/create',                    to: 'customers#create'
 end
