@@ -13,13 +13,13 @@ json.data do
   json.end_date @get_info.end_date
   json.start_time @get_info.start_time
   json.end_time @get_info.end_time
-end
 
-json.location @get_info.location
+  json.location @get_info.location
 
-json.tickets(@get_info.tickets) do |ticket|
-  json.id ticket.id
-  json.name ticket.name
-  json.amount ticket.amount
-  json.price ticket.price
+  json.tickets(@get_info.tickets) do |ticket|
+    json.id ticket.id
+    json.name ticket.name
+    json.amount ticket.amount
+    json.price ticket.price
+  end
 end

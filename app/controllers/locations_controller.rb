@@ -15,7 +15,6 @@ class LocationsController < ApplicationController
   # POST /location/create
   def create
     @location = Location.create!(location_params)
-    json_response(@location, :created)
   end
 
   private

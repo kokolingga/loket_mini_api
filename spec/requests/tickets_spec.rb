@@ -95,5 +95,4 @@ RSpec.describe 'Events API' do
       end
     end
   end
-
 end

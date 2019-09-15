@@ -48,7 +48,7 @@ RSpec.describe 'Locations API', type: :request do
     end
   end
 
-  # Test suite for POST /location
+  # Test suite for POST /location/create
   describe 'POST /location/create' do
     # valid payload
     let(:valid_attributes) { { name: 'Pasaraya Blok M', address: 'Melawai', city: 'Jakarta', google_map_url: 'https://www.google.com/maps/place/Pasaraya+Blok+M' } }
@@ -57,14 +57,14 @@ RSpec.describe 'Locations API', type: :request do
       before { post '/location/create', params: valid_attributes }
 
       it 'creates a location' do
-        expect(json['name']).to eq('Pasaraya Blok M')
-        expect(json['address']).to eq('Melawai')
-        expect(json['city']).to eq('Jakarta')
-        expect(json['google_map_url']).to eq('https://www.google.com/maps/place/Pasaraya+Blok+M')
+        expect(json['data']['name']).to eq('Pasaraya Blok M')
+        expect(json['data']['address']).to eq('Melawai')
+        expect(json['data']['city']).to eq('Jakarta')
+        expect(json['data']['google_map_url']).to eq('https://www.google.com/maps/place/Pasaraya+Blok+M')
       end
 
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -80,6 +80,5 @@ RSpec.describe 'Locations API', type: :request do
             .to match(/Validation failed: Name can't be blank, Address can't be blank, City can't be blank, Google map url can't be blank/)
       end
     end
-
   end
 end

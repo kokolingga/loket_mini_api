@@ -8,7 +8,6 @@ RSpec.describe 'Events API' do
   let(:location_id) { location.id }
   let(:id) {events.first.id}
 
-
   # Test suite for GET /locations/:location_id/events
   describe 'GET /locations/:location_id/events' do
     before { get "/locations/#{location_id}/events" }

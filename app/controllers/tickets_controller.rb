@@ -21,7 +21,6 @@ class TicketsController < ApplicationController
   # POST /event/ticket/create
   def create_by_event_id
     @event.tickets.create!(ticket_params_by_event_id)
-    json_response(@event, :created)
   end
 
   private

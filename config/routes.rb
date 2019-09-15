@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   post '/locations/:location_id/events',      to: 'events#create'
   post '/event/create',                       to: 'events#create_by_location_id'
 
-
   # Ticket
   get  '/events/:event_id/tickets',           to: 'tickets#index'
   get  '/events/:event_id/tickets/:id',       to: 'tickets#show'
@@ -22,4 +21,9 @@ Rails.application.routes.draw do
   get  '/customers',                          to: 'customers#index'
   get  '/customers/:id',                      to: 'customers#show'
   post '/customer/create',                    to: 'customers#create'
+
+  # Transaction
+  post '/transaction/purchase',               to: 'transactions#purchase'
+  post '/transaction/check_ticket_quota',     to: 'transactions#check_ticket_quota'
+  get '/transaction/get_info/:customer_id',   to: 'transactions#get_info'
 end

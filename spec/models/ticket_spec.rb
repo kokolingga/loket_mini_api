@@ -5,6 +5,9 @@ RSpec.describe Ticket, type: :model do
   # ensure an ticket record belongs to a single event record
   it { should belong_to(:event) }
 
+  # ensure Ticket model has a 1:m relationship with the Transaction model
+  it { should have_many(:transactions).dependent(:destroy) }
+
   # Validation tests
   # ensure each columns are present before saving
   it { should validate_presence_of(:name) }

@@ -4,7 +4,6 @@ RSpec.describe Event, type: :model do
   # Association test
   # ensure an event record belongs to a single location record
   it { should belong_to(:location) }
-
   it { should have_many(:tickets).dependent(:destroy) }
 
   # Validation tests

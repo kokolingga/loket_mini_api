@@ -21,7 +21,6 @@ class EventsController < ApplicationController
   # POST /event/create
   def create_by_location_id
     @location.events.create!(event_params_by_location_id)
-    json_response(@location, :created)
   end
 
   # GET /locations/:location_id/events/:id/get_info
@@ -46,6 +45,4 @@ class EventsController < ApplicationController
   def set_location_event
     @event = @location.events.find_by!(id: params[:id]) if @location
   end
-
-
 end

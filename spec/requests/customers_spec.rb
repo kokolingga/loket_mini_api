@@ -87,7 +87,5 @@ RSpec.describe 'Customers API', type: :request do
             .to match(/Validation failed: First name can't be blank, Last name can't be blank, Email can't be blank, Phone can't be blank/)
       end
     end
-
   end
-
 end
